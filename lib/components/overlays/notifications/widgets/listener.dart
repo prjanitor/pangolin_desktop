@@ -35,6 +35,10 @@ mixin NotificationServiceListener<T extends StatefulWidget> on State<T> {
 
         setState(() {});
       case ReplaceNotificationEvent(id: final id, oldId: final oldId):
+        final UserNotification? notification = service.getNotification(id);
+
+        if (notification == null) return;
+
         onNotificationReplaced(oldId, id);
       default:
         break;
